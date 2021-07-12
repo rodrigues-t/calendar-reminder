@@ -1,0 +1,23 @@
+.calendar-month {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    grid-template-rows: auto;
+    place-items: start;
+
+    &__header {
+        width: 100%;
+        background-color: $bg-light-grey;
+        text-align: center;
+        border: 1px solid $bg-lighter-grey;
+    }
+    
+    &__day {
+        width: 100%;
+        background-color: $bg-lighter-blue;
+
+        &:hover {
+            background-color: $bg-light-blue;
+        }
+    }
+}
