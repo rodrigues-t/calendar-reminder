@@ -1,10 +1,10 @@
 $bg-lighter-grey: #dedede;
 $bg-light-grey: #bfbfbf;
 $bg-lighter-blue: #d0f1f7;
-$bg-light-blue: #afeffa;
+$bg-light-blue: #c4f6ff;
 
 @import "./components/CalendarMonth";
 
 body {
-    margin-top: 8px;
+    padding-top: 8px;
 }
