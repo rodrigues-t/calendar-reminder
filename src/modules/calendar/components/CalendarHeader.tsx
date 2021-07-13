@@ -1,12 +1,11 @@
 import React from 'react';
+import { DAY_OF_WEEK_SHORT_NAME } from '../../../shared/services/Date';
 
 const CalendarHeader = () => {
-  const dayOfWeekNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-
   return (
     <>
       {
-        dayOfWeekNames.map((week: string) => <div className="calendar-month__header" key={week}>{week}</div>)
+        DAY_OF_WEEK_SHORT_NAME.map((week: string) => <div className="calendar-month__header" key={week}>{week}</div>)
       }
     </>
   )

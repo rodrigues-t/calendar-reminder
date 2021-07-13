@@ -1,32 +1,27 @@
 import React from 'react';
-import { JsxElement } from 'typescript';
 import '../../../assets/style/main.scss'
 import CalendarDay from './CalendarDay';
 import CalendarHeader from './CalendarHeader';
+import {
+  getLastDateOfMonth as _getLastDateOfMonth,
+  getFirstDayOfMonth as _getFirstDayOfMonth,
+} from '../../../shared/services/Date';
 
 const CalendarMonth = () => {
   const month = 6;
 
-  const getLastDateOfMonth = () => {
-    const today = new Date();
-    return new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
-  }
-
-  const getFirstDayOfMonth = (year: number, month: number) => {
-    const today = new Date();
-    
-    return new Date(today.getFullYear(), month, 1).getDay();
-  }
+  const getLastDateOfMonth = () => _getLastDateOfMonth(new Date().getFullYear(), month);
+  const getFirstDayOfMonth = () => _getFirstDayOfMonth(new Date().getFullYear(), month);
 
   const getCalendarDays = () => {
     const days = [];
-    const firstDayOfMonth = getFirstDayOfMonth(2021, month);
-    console.log(firstDayOfMonth)
-    for(let i = 0; i < getLastDateOfMonth() - 1; i++) {
+    const firstDayOfMonth = getFirstDayOfMonth();
+    
+    for(let i = 0; i < (getLastDateOfMonth() + firstDayOfMonth) ; i++) {
       if( i < firstDayOfMonth) {
-        days.push(<div />)
+        days.push(<div key={i} />)
       } else {
-        days.push(<CalendarDay />);
+        days.push(<CalendarDay day={i - firstDayOfMonth + 1} key={i} />);
       }
     }
     return days;
