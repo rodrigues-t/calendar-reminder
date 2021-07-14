@@ -22,11 +22,10 @@ export default function calendarReducer(state: ICalendarState = initialState, ac
   switch (type) {
     case actionTypes.CALENDAR_ADD_REMINDER:
       const key = payload.date.toLocaleDateString('en-US');
-      console.log(state.reminders);
       state.reminders.set(key, [...(state.reminders.get(key) ?? []), payload]);
-      console.log(state.reminders);
       return {
-        ...state
+        ...state,
+        reminders: new Map<string, Array<Reminder>>(state.reminders.entries()),
       };
     case actionTypes.CALENDAR_UPDATE_DAY:
       return {

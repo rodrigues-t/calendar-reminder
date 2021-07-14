@@ -1,38 +1,22 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import { Button } from 'react-bootstrap';
-import useCalendarActions from '../hooks/useCalendarActions';
 import useCalendarSelectors from '../hooks/useCalendarSelectors';
 import { Reminder } from '../models/Remider';
-import ReminderFormModal from './modals/ReminderInsertModal';
 
 interface ICalendarDayProps {
   day: number;
+  onManageClick: (day: number) => void;
+  onInsertClick: (day: number) => void;
 }
 
 const CalendarDay = (props: ICalendarDayProps) => {
-  const [showReminderInsertModal, setShowReminderInsertModal] = useState(false);
-  const { updateDay } = useCalendarActions();
   const { reminders, selectedYear, selectedMonth } = useCalendarSelectors();
 
-  const addReminderClickCallback = useCallback(
-    () => {
-      updateDay(props.day);
-      setShowReminderInsertModal(true);
-    },
-    [setShowReminderInsertModal, updateDay, props.day],
-  );
-
-  const handleCloseReminderCallback = useCallback(
-    () => {
-      setShowReminderInsertModal(false);
-      updateDay(null);
-    },
-    [setShowReminderInsertModal, updateDay],
-  );
-
-  const getDateReminders = () => {
-    return reminders.get(new Date(selectedYear, selectedMonth, props.day).toLocaleDateString('en-US')) ?? [];
-  }
+  const onManageClick = () => props.onManageClick(props.day);
+  const onInsertClick = () => props.onInsertClick(props.day);
+  
+  const getDateReminders = () =>
+    reminders.get(new Date(selectedYear, selectedMonth, props.day).toLocaleDateString('en-US')) ?? [];
 
   const getReminderElement = (reminder: Reminder) =>
     <div>
@@ -53,7 +37,7 @@ const CalendarDay = (props: ICalendarDayProps) => {
         {
           getDateReminders().length > 0
           && < section >
-            < Button size="sm" variant="link">
+            < Button size="sm" variant="link" onClick={onManageClick}>
               {
                 getDateReminders().length > 3
                 ? `${getDateReminders().length - 3}+ manage all`
@@ -64,14 +48,16 @@ const CalendarDay = (props: ICalendarDayProps) => {
         }
       </div >
       <div className="calendar-month__day-footer">
-        <Button className="calendar-month__day-button-add" size="sm" variant="secondary" block onClick={addReminderClickCallback}>
+        <Button 
+          className="calendar-month__day-button-add" 
+          size="sm" 
+          variant="secondary" 
+          block 
+          onClick={onInsertClick}
+        >
           Add Reminder
         </Button>
       </div>
-      <ReminderFormModal
-        show={showReminderInsertModal}
-        handleClose={handleCloseReminderCallback}
-      />
     </div >
   )
 }

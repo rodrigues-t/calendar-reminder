@@ -1,18 +1,20 @@
 import { useSelector } from "react-redux";
 import { ICalendarState } from "../store/reducer";
 
-const useCalendarSelectors = () => {
+const useCalendarCurrentDate = () => {
     const selectedYear = useSelector((state: ICalendarState) => state.selectedYear);
     const selectedMonth = useSelector((state: ICalendarState) => state.selectedMonth);
     const selectedDay = useSelector((state: ICalendarState) => state.selectedDay);
-    const reminders = useSelector((state: ICalendarState) => state.reminders);
+
+    const currentDate = new Date(selectedYear, selectedMonth, selectedDay ?? undefined);
+
+    const currentFormatedDate = 
+      new Date(selectedYear, selectedMonth, selectedDay ?? undefined).toLocaleDateString('en-US');
     
     return { 
-        selectedDay, 
-        selectedMonth, 
-        selectedYear,
-        reminders,
+        currentDate,
+        currentFormatedDate,
      };
 }
 
-export default useCalendarSelectors;
+export default useCalendarCurrentDate;

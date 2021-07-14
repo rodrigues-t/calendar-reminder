@@ -6,6 +6,12 @@ $color-dark-blue: #BFDBFE;
 $color-darker-blue: #93C5FD;
 
 @import "./components/CalendarMonth";
+@import "./components/ReminderManageModal";
+
+.bullet {
+    height: 1rem;
+    border-radius: 30px;
+}
 
 body {
     padding-top: 8px;

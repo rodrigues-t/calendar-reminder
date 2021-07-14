@@ -1,0 +1,22 @@
+.reminder-manage-modal {
+    &__item {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        width: 100%;
+
+        &-time {
+            margin-left: 10px;
+        } 
+
+        &-title {
+            flex: 1;
+            margin-left: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        } 
+    }
+}

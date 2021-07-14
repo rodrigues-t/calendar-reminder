@@ -6,15 +6,17 @@ import { Reminder } from '../../models/Remider';
 import useCalendarSelectors from '../../hooks/useCalendarSelectors';
 import useCalendarActions from '../../hooks/useCalendarActions';
 import { getDestructedTime } from '../../../../shared/services/Date';
+import useCalendarCurrentDate from '../../hooks/useCalendarCurrentDate';
 
 interface IAddReminderModalProps {
   show: boolean;
-  handleClose: () => void;
+  onClose: () => void;
 }
 
 const ReminderInsertModal = (props: IAddReminderModalProps) => {
   const { selectedDay, selectedMonth, selectedYear } = useCalendarSelectors();
   const { addReminder } = useCalendarActions();
+  const { currentFormatedDate } = useCalendarCurrentDate();
 
   const onInsert = (reminder: Reminder) => {
     reminder.id = new Date().valueOf();
@@ -23,23 +25,16 @@ const ReminderInsertModal = (props: IAddReminderModalProps) => {
     addReminder(reminder);
     toast("Reminder added.");
   }
-
-  const getDateString = () => 
-    new Date(
-      selectedYear, 
-      selectedMonth, 
-      selectedDay ?? undefined
-    ).toLocaleDateString('en-US');
-
+    
   return (
-    <Modal show={props.show} onHide={props.handleClose}>
+    <Modal show={props.show} onHide={props.onClose}>
       <Modal.Header closeButton>
         <Modal.Title>
-          { `New reminder for the day  ${getDateString()}` }
+          { `New reminder for the day  ${currentFormatedDate}` }
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <ReminderInsertForm onCancel={props.handleClose} onInsert={onInsert} />
+        <ReminderInsertForm onCancel={props.onClose} onInsert={onInsert} />
       </Modal.Body>
     </Modal>
   )
