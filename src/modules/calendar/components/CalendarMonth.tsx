@@ -6,13 +6,15 @@ import {
   getLastDateOfMonth as _getLastDateOfMonth,
   getFirstDayOfMonth as _getFirstDayOfMonth,
 } from '../../../shared/services/Date';
+import useCalendarSelectors from '../hooks/useCalendarSelectors';
 
 const CalendarMonth = () => {
   const month = 6;
 
   const getLastDateOfMonth = () => _getLastDateOfMonth(new Date().getFullYear(), month);
   const getFirstDayOfMonth = () => _getFirstDayOfMonth(new Date().getFullYear(), month);
-
+  const { reminders } = useCalendarSelectors();
+  console.log(reminders);
   const getCalendarDays = () => {
     const days = [];
     const firstDayOfMonth = getFirstDayOfMonth();
