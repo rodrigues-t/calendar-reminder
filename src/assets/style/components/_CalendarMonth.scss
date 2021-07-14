@@ -13,13 +13,68 @@
     }
     
     &__day {
+        display: flex;
+        flex-direction: column;
         width: 100%;
         padding: 5px;
+        overflow-y: auto;
         background-color: $bg-lighter-blue;
-        border: 1px solid $bg-lighter-grey;
+        border: 1px solid $color-dark-blue;
 
         &:hover {
-            background-color: $bg-light-blue;
+            background-color: $bg-light-blue;            
+        }
+
+        &:hover &-button-add {
+            display: block !important;
+        }
+
+        &-body {
+            flex: 1;
+            font-size: 0.8rem;
+            margin-top: 4px;
+
+            & > div {
+                display: flex;
+                align-items: center;
+                overflow: hidden;
+                
+                & div.bullet {
+                    height: 1rem;
+                    border-radius: 30px;
+                }
+
+                & span {
+                    margin-left: 5px;
+                } 
+
+                & span:firs-of-type {
+                    overflow: auto;
+                }
+
+                & span:last-of-type {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1;
+                    -webkit-box-orient: vertical;
+                }                
+            }
+
+            & section {
+                display: flex;
+                justify-content: flex-start;
+
+                & button {
+                    padding-left: 2px !important;
+                    font-size: 0.8rem;
+                }
+                
+            }
+        }    
+
+        &-button-add {
+            display: none !important;
         }
     }
 }
