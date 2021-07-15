@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { IReminderValidation, validateCalendarForm } from '../../helpers/Validator';
+import { IReminderValidation, validateCalendarInsertForm } from '../../helpers/Validator';
 import { Reminder } from '../../models/Remider';
 
 interface IReminderInsertFormProps {
@@ -34,7 +34,7 @@ const ReminderInsertForm = (props: IReminderInsertFormProps) => {
 
   const onInsert = (e: any) => {
     e.preventDefault();
-    const validation = validateCalendarForm(reminder);
+    const validation = validateCalendarInsertForm(reminder);
     if(Object.values(validation).reduce((acc, value) => acc && value.isValid, true)) {
       props.onInsert(reminder);
       resetForm();

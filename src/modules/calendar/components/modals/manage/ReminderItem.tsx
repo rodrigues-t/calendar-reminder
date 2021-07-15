@@ -5,7 +5,7 @@ import { Reminder } from "../../../models/Remider";
 
 interface IReminderItem {
   reminder: Reminder;
-  onEdit: () => void;
+  onEdit: (reminder: Reminder) => void;
   onDelete: (reminder: Reminder) => void;
 }
 
@@ -17,7 +17,7 @@ const ReminderItem = (props: IReminderItem) => {
         <div className="bullet" style={{ backgroundColor: props.reminder.color, aspectRatio: "1" }}></div>
         <span className="reminder-manage-modal__item-time">{props.reminder.time}</span>
         <div className="reminder-manage-modal__item-title">{props.reminder.title}</div>
-        <Button variant="secondary" size="sm" disabled={deleteReminder}>
+        <Button variant="secondary" size="sm" disabled={deleteReminder} onClick={() => props.onEdit(props.reminder)}>
           <FontAwesomeIcon icon="pen" size="xs" />
         </Button>
         <Button variant="danger" size="sm" disabled={deleteReminder} onClick={() => setDeleteReminder(true)}>

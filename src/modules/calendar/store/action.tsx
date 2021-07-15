@@ -11,9 +11,9 @@ export const deleteReminder = (reminder: Reminder) => ({
   payload: reminder,
 });
 
-export const editReminder = (reminder: Reminder) => ({
+export const editReminder = (oldReminder:Reminder, reminder: Reminder) => ({
   type: actionTypes.CALENDAR_EDIT_REMINDER,
-  payload: reminder,
+  payload: { oldReminder, reminder },
 });
 
 export const updateDay = (day: number | null) => ({
