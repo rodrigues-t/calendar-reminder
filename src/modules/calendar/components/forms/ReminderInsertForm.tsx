@@ -1,5 +1,6 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { IReminderValidation, validateCalendarForm } from '../../helpers/Validator';
 import { Reminder } from '../../models/Remider';
 
 interface IReminderInsertFormProps {
@@ -8,6 +9,7 @@ interface IReminderInsertFormProps {
 }
 
 const ReminderInsertForm = (props: IReminderInsertFormProps) => {
+  const [reminderValidation, setReminderValidation] = useState<IReminderValidation | null>(null);
   const [reminder, setReminder] = useState<Reminder>({
     id: 0,
     title: '',
@@ -26,14 +28,17 @@ const ReminderInsertForm = (props: IReminderInsertFormProps) => {
     });
   }
 
-  const onInsertCallback = useCallback(
-    e => {
-      e.preventDefault();
+  const onInsert = (e: any) => {
+    e.preventDefault();
+    const validation = validateCalendarForm(reminder);
+    if(Object.values(validation).reduce((acc, value) => acc && value.isValid, true)) {
       props.onInsert(reminder);
       resetForm();
-    },
-    [props.onInsert, reminder, resetForm],
-  );
+      setReminderValidation(null);
+    } else {
+      setReminderValidation(validation);
+    }
+  }
 
   const onInputChange = (e: any) => {
     const value = e.target.value;
@@ -56,9 +61,9 @@ const ReminderInsertForm = (props: IReminderInsertFormProps) => {
       </Form.Group>
       <Form.Group>
         <Button variant="secondary" className="mr-1" type="submit" onClick={props.onCancel}>
-          Cancel
+          Close
         </Button>
-        <Button variant="primary" type="button" onClick={onInsertCallback}>
+        <Button variant="primary" type="button" onClick={onInsert}>
           Save
         </Button>
       </Form.Group>

@@ -4,6 +4,7 @@
         flex-wrap: wrap;
         align-items: center;
         width: 100%;
+        margin-top: 4px;
 
         &-time {
             margin-left: 10px;
@@ -18,5 +19,33 @@
             -webkit-line-clamp: 1;
             -webkit-box-orient: vertical;
         } 
+        & button {
+            margin-left: 10px;
+            padding: 2px 8px;
+        }
+    }
+
+    &__item:first-of-type {
+        margin-top: 0px !important;
+    }
+
+    &__item-delete {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid black;
+        margin-top: 2px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+
+        & section button{
+            margin-left: 10px;
+            font-size: 0.8rem !important;
+            min-width: 50px !important;
+        }
     }
 }

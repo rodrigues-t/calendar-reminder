@@ -27,6 +27,16 @@ export default function calendarReducer(state: ICalendarState = initialState, ac
         ...state,
         reminders: new Map<string, Array<Reminder>>(state.reminders.entries()),
       };
+    case actionTypes.CALENDAR_DELETE_REMINDER:
+      const deleteKey = payload.date.toLocaleDateString('en-US');
+      state.reminders.set(
+        deleteKey, 
+        [...((state.reminders.get(deleteKey) ?? []).filter(r => r.id !== payload.id))],
+      );
+      return {
+        ...state,
+        reminders: new Map<string, Array<Reminder>>(state.reminders.entries()),
+      }
     case actionTypes.CALENDAR_UPDATE_DAY:
       return {
         ...state,

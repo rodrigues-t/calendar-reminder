@@ -1,7 +1,10 @@
 import { Modal } from "react-bootstrap";
+import { toast } from "react-toastify";
+import useCalendarActions from "../../hooks/useCalendarActions";
 import useCalendarCurrentDate from "../../hooks/useCalendarCurrentDate";
 import useCalendarSelectors from "../../hooks/useCalendarSelectors";
 import { Reminder } from "../../models/Remider";
+import ReminderItem from "./manage/ReminderItem";
 
 interface IReminderManageModalProps {
   show: boolean;
@@ -9,8 +12,14 @@ interface IReminderManageModalProps {
 }
 
 const ReminderManageModal = (props: IReminderManageModalProps) => {
-  const { selectedDay, selectedMonth, selectedYear, reminders } = useCalendarSelectors();
+  const { reminders } = useCalendarSelectors();
+  const { deleteReminder } = useCalendarActions();
   const { currentFormatedDate } = useCalendarCurrentDate();
+  
+  const onDelete = (reminder: Reminder) => {
+    deleteReminder(reminder);
+    toast("Reminder deleted");
+  }
 
   const getReminders = (): Array<Reminder> => {
     return (reminders.get(currentFormatedDate) ?? [])
@@ -24,16 +33,7 @@ const ReminderManageModal = (props: IReminderManageModalProps) => {
         return 0;
       });
   }
-
-  const getReminderElement = (reminder: Reminder) =>
-    <div className="reminder-manage-modal__item">
-      <div className="bullet" style={{ backgroundColor: reminder.color, aspectRatio: "1" }}></div>
-      <span className="reminder-manage-modal__item-time">{reminder.time}</span>
-      <div className="reminder-manage-modal__item-title">{reminder.title}</div>
-      <span>edit</span>
-      <span>delete</span>
-    </div>;
-
+  
   return (
     <Modal show={props.show} onHide={props.onClose}>
       <Modal.Header closeButton>
@@ -43,7 +43,7 @@ const ReminderManageModal = (props: IReminderManageModalProps) => {
       </Modal.Header>
       <Modal.Body className="reminder-manage-modal">
         {
-          getReminders().map((reminder: Reminder) => getReminderElement(reminder))
+          getReminders().map((reminder: Reminder) => <ReminderItem key={`mri-${reminder.id}`} reminder={reminder} onDelete={onDelete} onEdit={()=>{}} />)
         }
       </Modal.Body>
     </Modal>
