@@ -32,7 +32,7 @@ const validateCalendarForm = (reminder: Reminder): IReminderValidation => {
         };
     }
     if(!validator.isLength(reminder.time, { min: 5, max: 5})) {
-        reminderValidation.color = {
+        reminderValidation.time = {
             isValid: false,
             error: 'Invalid time.',
         };

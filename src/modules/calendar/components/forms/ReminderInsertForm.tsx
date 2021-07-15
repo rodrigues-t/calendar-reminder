@@ -18,6 +18,10 @@ const ReminderInsertForm = (props: IReminderInsertFormProps) => {
     color: '#000000',
   });
 
+  const isFormValid = () => reminderValidation 
+    ? Object.values(reminderValidation).reduce((acc, value) => acc && value.isValid, true)
+    : false;
+
   const resetForm = () => {
     setReminder({
       id: 0,
@@ -46,14 +50,40 @@ const ReminderInsertForm = (props: IReminderInsertFormProps) => {
   }
 
   return (
-    <Form>
+    <Form validated={isFormValid()}>
       <Form.Group controlId="formBasicTitle">
         <Form.Label>Title</Form.Label>
-        <Form.Control value={reminder.title} name="title" type="text" onChange={onInputChange} placeholder="Enter reminder title" required />
+        <Form.Control 
+          value={reminder.title} 
+          name="title" 
+          type="text" 
+          onChange={onInputChange} 
+          placeholder="Enter reminder title" 
+          required
+          isInvalid={ (reminderValidation ? !reminderValidation.title.isValid : false)}
+        />
+        {
+          (reminderValidation ? !reminderValidation.title.isValid : false) &&
+          <Form.Control.Feedback type="invalid">
+            {reminderValidation?.title.error}
+          </Form.Control.Feedback>
+        }
       </Form.Group>
       <Form.Group controlId="formBasicTime">
         <Form.Label>Time</Form.Label>
-        <Form.Control value={reminder.time} name="time" type="time" onChange={onInputChange} required />
+        <Form.Control 
+          value={reminder.time} 
+          name="time" type="time" 
+          onChange={onInputChange} 
+          required 
+          isInvalid={ (reminderValidation ? !reminderValidation.time.isValid : false)}
+        />
+        {
+          (reminderValidation ? !reminderValidation.time.isValid : false) &&
+          <Form.Control.Feedback type="invalid">
+            {reminderValidation?.time.error}
+          </Form.Control.Feedback>
+        }
       </Form.Group>
       <Form.Group controlId="formBasicTime">
         <Form.Label>Color</Form.Label>
