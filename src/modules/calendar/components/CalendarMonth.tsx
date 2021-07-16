@@ -5,6 +5,8 @@ import CalendarHeader from './CalendarHeader';
 import {
   getLastDateOfMonth as _getLastDateOfMonth,
   getFirstDayOfMonth as _getFirstDayOfMonth,
+  getLastDayOfMonth as _getLastDayOfMonth,
+  getLastDayOfMonth,
 } from '../../../shared/services/Date';
 import ReminderManageModal from './modals/ReminderManageModal';
 import useCalendarActions from '../hooks/useCalendarActions';
@@ -37,20 +39,24 @@ const CalendarMonth = () => {
 
   const getLastDateOfMonth = (): number => _getLastDateOfMonth(selectedYear, selectedMonth);
   const getFirstDayOfMonth = (): number => _getFirstDayOfMonth(selectedYear, selectedMonth);
+  const getLastDayOfMonth = (): number => _getLastDayOfMonth(selectedYear, selectedMonth);
     
   const getCalendarDays = () => {
     const days = [];
     const firstDayOfMonth = getFirstDayOfMonth();
+    const lastDayOfMonth = getLastDayOfMonth();
     
-    for(let i = 0; i < (getLastDateOfMonth() + firstDayOfMonth) ; i++) {
+    for(let i = 0; i < (getLastDateOfMonth() + firstDayOfMonth + (6 -lastDayOfMonth)) ; i++) {
       if( i < firstDayOfMonth) {
         days.push(<CalendarBlankDay key={i} />)
-      } else {
+      } else if( i < getLastDateOfMonth() + firstDayOfMonth ) {
         days.push(<CalendarDay 
           day={i - firstDayOfMonth + 1} 
           key={i}
           onManageClick={onManageClickCallback} 
           onInsertClick={onInsertClickCallback} />);
+      } else {
+        days.push(<CalendarBlankDay key={i} />)
       }
     }
     return days;

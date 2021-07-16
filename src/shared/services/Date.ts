@@ -1,6 +1,6 @@
 export const getLastDateOfMonth = (year: number, month: number): number => new Date(year, month + 1, 0).getDate();
-
 export const getFirstDayOfMonth = (year: number, month: number): number => new Date(year, month, 1).getDay();
+export const getLastDayOfMonth = (year: number, month: number): number => new Date(year, month + 1, 0).getDay();
 
 export const getDestructedTime = (time: string): { hour: number, min: number } => ({
     hour: Number(time.split(':')[0]),

@@ -4,6 +4,8 @@
     grid-template-columns: repeat(7, minmax(0, 1fr));
     grid-template-rows: auto;
     place-items: start;
+    border: 1px solid $color-dark-blue;
+    //border-left: 1px solid $color-dark-blue;
 
     &__header {
         width: 100%;
