@@ -51,7 +51,7 @@ const ReminderInsertForm = (props: IReminderInsertFormProps) => {
 
   return (
     <Form validated={isFormValid()}>
-      <Form.Group controlId="formBasicTitle">
+      <Form.Group controlId="formInsertTitle">
         <Form.Label>Title</Form.Label>
         <Form.Control 
           value={reminder.title} 
@@ -69,7 +69,7 @@ const ReminderInsertForm = (props: IReminderInsertFormProps) => {
           </Form.Control.Feedback>
         }
       </Form.Group>
-      <Form.Group controlId="formBasicTime">
+      <Form.Group controlId="formInsertTime">
         <Form.Label>Time</Form.Label>
         <Form.Control 
           value={reminder.time} 
@@ -85,12 +85,12 @@ const ReminderInsertForm = (props: IReminderInsertFormProps) => {
           </Form.Control.Feedback>
         }
       </Form.Group>
-      <Form.Group controlId="formBasicTime">
+      <Form.Group controlId="formInsertColor">
         <Form.Label>Color</Form.Label>
         <Form.Control value={reminder.color} name="color" type="color" onChange={onInputChange} required />
       </Form.Group>
       <Form.Group>
-        <Button variant="secondary" className="mr-1" type="submit" onClick={props.onCancel}>
+        <Button variant="secondary" className="mr-1" type="button" onClick={props.onCancel}>
           Close
         </Button>
         <Button variant="primary" type="button" onClick={onInsert}>

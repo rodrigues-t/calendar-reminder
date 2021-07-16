@@ -48,7 +48,7 @@ const ReminderEditForm = (props: IReminderEditFormProps) => {
 
   return (
     <Form validated={isFormValid()}>
-      <Form.Group controlId="formBasicDate">
+      <Form.Group controlId="formEditDate">
         <Form.Label>Date</Form.Label>
         <Form.Control
           value={date}
@@ -65,7 +65,7 @@ const ReminderEditForm = (props: IReminderEditFormProps) => {
           </Form.Control.Feedback>
         }
       </Form.Group>
-      <Form.Group controlId="formBasicTitle">
+      <Form.Group controlId="formEditTitle">
         <Form.Label>Title</Form.Label>
         <Form.Control
           value={reminder.title}
@@ -83,7 +83,7 @@ const ReminderEditForm = (props: IReminderEditFormProps) => {
           </Form.Control.Feedback>
         }
       </Form.Group>
-      <Form.Group controlId="formBasicTime">
+      <Form.Group controlId="formEditTime">
         <Form.Label>Time</Form.Label>
         <Form.Control
           value={reminder.time}
@@ -99,7 +99,7 @@ const ReminderEditForm = (props: IReminderEditFormProps) => {
           </Form.Control.Feedback>
         }
       </Form.Group>
-      <Form.Group controlId="formBasicTime">
+      <Form.Group controlId="formEditColor">
         <Form.Label>Color</Form.Label>
         <Form.Control value={reminder.color} name="color" type="color" onChange={onInputChange} required />
       </Form.Group>

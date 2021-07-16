@@ -27,7 +27,7 @@ const ReminderInsertModal = (props: IAddReminderModalProps) => {
   }
     
   return (
-    <Modal show={props.show} onHide={props.onClose}>
+    <Modal show={props.show} onHide={props.onClose} animation={false}>
       <Modal.Header closeButton>
         <Modal.Title>
           { `New reminder for the day  ${currentFormatedDate}` }

@@ -29,6 +29,11 @@
         background-color: $bg-lighter-blue;
         border: 1px solid $color-dark-blue;
 
+        &-header {
+            font-weight: 600;
+            color: $color-darkest-blue;
+        }
+
         &:hover {
             background-color: $bg-light-blue;            
         }

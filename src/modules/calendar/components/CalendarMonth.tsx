@@ -14,7 +14,7 @@ import CalendarBlankDay from './CalendarBlankDay';
 
 const CalendarMonth = () => {
   const { updateDay } = useCalendarActions();
-  const { selectedMonth } = useCalendarSelectors();
+  const { selectedMonth, selectedYear } = useCalendarSelectors();
 
   const [showManageModal, setShowManageModal] = useState(false);
   const [showInsertModal, setShowInsertModal] = useState(false);
@@ -35,8 +35,8 @@ const CalendarMonth = () => {
     [updateDay, setShowInsertModal],
   );
 
-  const getLastDateOfMonth = (): number => _getLastDateOfMonth(new Date().getFullYear(), selectedMonth);
-  const getFirstDayOfMonth = (): number => _getFirstDayOfMonth(new Date().getFullYear(), selectedMonth);
+  const getLastDateOfMonth = (): number => _getLastDateOfMonth(selectedYear, selectedMonth);
+  const getFirstDayOfMonth = (): number => _getFirstDayOfMonth(selectedYear, selectedMonth);
     
   const getCalendarDays = () => {
     const days = [];

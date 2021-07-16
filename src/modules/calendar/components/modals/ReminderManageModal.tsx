@@ -51,7 +51,7 @@ const ReminderManageModal = (props: IReminderManageModalProps) => {
   );
 
   return (
-    <Modal show={props.show} onHide={onHide}>
+    <Modal show={props.show} onHide={onHide} animation={false}>
       <Modal.Header closeButton={!editingReminder}>
         <Modal.Title>          
           {

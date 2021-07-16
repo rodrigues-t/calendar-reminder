@@ -4,7 +4,7 @@ import CalendarMonthHeader from '../modules/calendar/components/CalendarMonthHea
 
 const CalendarView = () => {
   return (
-    <div className="calendar-view">
+    <div>
       <CalendarMonthHeader />
       <CalendarMonth />
     </div>
