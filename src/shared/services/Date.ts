@@ -8,3 +8,4 @@ export const getDestructedTime = (time: string): { hour: number, min: number } =
 }) 
 
 export const DAY_OF_WEEK_SHORT_NAME = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+export const MONTH_NAME = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];

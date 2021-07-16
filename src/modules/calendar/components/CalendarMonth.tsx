@@ -10,6 +10,7 @@ import ReminderManageModal from './modals/ReminderManageModal';
 import useCalendarActions from '../hooks/useCalendarActions';
 import useCalendarSelectors from '../hooks/useCalendarSelectors';
 import ReminderInsertModal from './modals/ReminderInsertModal';
+import CalendarBlankDay from './CalendarBlankDay';
 
 const CalendarMonth = () => {
   const { updateDay } = useCalendarActions();
@@ -43,7 +44,7 @@ const CalendarMonth = () => {
     
     for(let i = 0; i < (getLastDateOfMonth() + firstDayOfMonth) ; i++) {
       if( i < firstDayOfMonth) {
-        days.push(<div key={i} />)
+        days.push(<CalendarBlankDay key={i} />)
       } else {
         days.push(<CalendarDay 
           day={i - firstDayOfMonth + 1} 

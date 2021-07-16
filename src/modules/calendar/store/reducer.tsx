@@ -30,7 +30,7 @@ export default function calendarReducer(state: ICalendarState = initialState, ac
     case actionTypes.CALENDAR_DELETE_REMINDER:
       const deleteKey = payload.date.toLocaleDateString('en-US');
       state.reminders.set(
-        deleteKey, 
+        deleteKey,
         [...((state.reminders.get(deleteKey) ?? []).filter(r => r.id !== payload.id))],
       );
       return {
@@ -40,14 +40,14 @@ export default function calendarReducer(state: ICalendarState = initialState, ac
     case actionTypes.CALENDAR_EDIT_REMINDER:
       const oldKey = payload.oldReminder.date.toLocaleDateString('en-US');
       const editKey = payload.reminder.date.toLocaleDateString('en-US');
-      if(oldKey === editKey) {
+      if (oldKey === editKey) {
         state.reminders.set(
-          editKey, 
+          editKey,
           [...((state.reminders.get(editKey) ?? []).filter(r => r.id !== payload.reminder.id)), payload.reminder],
         );
       } else {
         state.reminders.set(
-          oldKey, 
+          oldKey,
           [...((state.reminders.get(oldKey) ?? []).filter(r => r.id !== payload.reminder.id))],
         );
         state.reminders.set(editKey, [...(state.reminders.get(editKey) ?? []), payload.reminder]);
@@ -60,6 +60,16 @@ export default function calendarReducer(state: ICalendarState = initialState, ac
       return {
         ...state,
         selectedDay: payload,
+      };
+    case actionTypes.CALENDAR_UPDATE_MONTH:
+      return {
+        ...state,
+        selectedMonth: payload,
+      };
+    case actionTypes.CALENDAR_UPDATE_YEAR:
+      return {
+        ...state,
+        selectedYear: payload,
       };
     default:
       return state

@@ -4,9 +4,13 @@ $bg-lighter-blue: #EFF6FF;
 $bg-light-blue: #DBEAFE;
 $color-dark-blue: #BFDBFE;
 $color-darker-blue: #93C5FD;
+$color-darkest-blue: #2a327d;
 
 @import "./components/CalendarMonth";
 @import "./components/ReminderManageModal";
+@import "./components/CalendarMonthHeader";
+
+@import "./views/CalendarView";
 
 .bullet {
     height: 1rem;

@@ -20,3 +20,13 @@ export const updateDay = (day: number | null) => ({
   type: actionTypes.CALENDAR_UPDATE_DAY,
   payload: day,
 });
+
+export const updateMonth = (month: number) => ({
+  type: actionTypes.CALENDAR_UPDATE_MONTH,
+  payload: month,
+});
+
+export const updateYear = (year: number) => ({
+  type: actionTypes.CALENDAR_UPDATE_YEAR,
+  payload: year,
+});
